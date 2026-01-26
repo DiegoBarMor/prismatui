@@ -5,7 +5,7 @@
 
 <p align="center">
   <img src="logo.png" alt="Prisma TUI Logo" width="200"/><br>
-  <i>Prisma, the cat</i>, as rendered by prisma-tui.
+  <i>Prisma, the cat</i>, as rendered by prismatui.
 </p>
 
 
@@ -13,7 +13,7 @@
 ## QuickStart
 ### Run Demo
 ```
-pip install prisma-tui
+pip install prismatui
 python3 demos/layouts.py
 ```
 
@@ -53,16 +53,6 @@ See the [`demos/`](demos/) folder for example applications:
 - [`layouts.py`](demos/layouts.py): Example of a complex layout built using different Section techniques.
 - [`movement.py`](demos/movement.py): Example of an application in no-delay mode.
 - [`keys.py`](demos/keys.py): Simple "hello world" example.
-
-
-<!-- ----------------------------------------------------------------------- -->
-## License
-MIT License. See [LICENSE](LICENSE).
-
-
-<!-- ----------------------------------------------------------------------- -->
-# TODO
-- Make `utilities/image_formatter.py` into an actual utility.
 
 
 <!-- ----------------------------------------------------------------------- -->

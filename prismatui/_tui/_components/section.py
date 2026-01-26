@@ -132,6 +132,7 @@ class Section:
 
     # --------------------------------------------------------------------------
     def draw_matrix(self, y: int | str, x: int | str, chars: list[str], attrs: list[list[int]], blend = pr.BlendMode.OVERLAY) -> None:
+        """Draw a character matrix on the top layer of this section, at the specified coordinates with optional blending mode."""
         self.get_top_layer().draw_matrix(y, x, chars, attrs, blend)
 
     # --------------------------------------------------------------------------

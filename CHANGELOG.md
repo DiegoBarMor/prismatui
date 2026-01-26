@@ -1,6 +1,7 @@
 # Changelog
 
-## [0.2.2]
+## [0.3.0]
+- Renamed package again from `prisma-tui` to `prismatui` for simplicity.
 - Added more constants for the ASCII characters (32-126).
 
 ## [0.2.1] - 2025-11-30

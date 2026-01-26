@@ -63,13 +63,14 @@ def init_color(i: int, r: int, g: int, b: int) -> None:
     """Initialize a color with index 'i' and values 'r','g','b' to be used in color pairs by the terminal."""
     _CURRENT_BACKEND.init_color(i, r, g, b)
 
-def init_pair(i: int, fg: int, bg: int) -> None:
-    """Initialize a color pair (fg,bg) which can be accessed with index 'i'."""
-    _CURRENT_BACKEND.init_pair(i, fg, bg)
-
 def get_color_pair(i: int) -> int:
     """Retrieve the color pair for a given index."""
     return _CURRENT_BACKEND.get_color_pair(i)
+
+def init_pair(i: int, fg: int, bg: int) -> int:
+    """Initialize a color pair (fg,bg) which can be accessed with index 'i'. Returns the color pair value."""
+    _CURRENT_BACKEND.init_pair(i, fg, bg)
+    return get_color_pair(i)
 
 
 # --------------------------------------------------------------------------

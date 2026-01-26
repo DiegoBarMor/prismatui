@@ -88,6 +88,11 @@ class Terminal:
         self.root.draw_layer(y, x, layer)
 
     # --------------------------------------------------------------------------
+    def draw_matrix(self, y: int | str, x: int | str, chars: list[str], attrs: list[list[int]], blend = pr.BlendMode.OVERLAY) -> None:
+        """Draw a character matrix on the top layer of the root section, at the specified coordinates with optional blending mode."""
+        self.root.draw_matrix(y, x, chars, attrs, blend)
+
+    # --------------------------------------------------------------------------
     def draw_text(self,
         y: int | str, x: int | str, string,
         attr: int = None, blend = pr.BlendMode.OVERLAY,
@@ -95,7 +100,6 @@ class Terminal:
     ) -> None:
         """Draw a string on the top layer of the root section, at the specified coordinates with optional attributes and blending mode."""
         self.root.draw_text(y, x, string, attr, blend, cut)
-
 
     # --------------------------------------------------------------------------
     def draw_border(self,
