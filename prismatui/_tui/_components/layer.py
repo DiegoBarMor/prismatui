@@ -78,7 +78,10 @@ class Layer:
 
     # --------------------------------------------------------------------------
     def draw_matrix(self, y: int | str, x: int | str, chars: list[str], attrs: list[list[int]], blend = pr.BlendMode.OVERLAY) -> None:
+        h = len(chars)
+        w = len(chars[0])
         data = self.get_pixel_mat(chars, attrs)
+        y, x = self._parse_coords(h, w, y, x)
         self._stamp(y, x, data, blend)
 
     # --------------------------------------------------------------------------

@@ -1,15 +1,15 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="prisma-tui",
-    version="0.2.1",
+    name="prismatui",
+    version="0.2.2",
     description="A TUI framework based on the idea of \"multi-layered transparency\" composition.",
     keywords="tui terminal user interface transparency layers layered curses",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     author="DiegoBarMor",
     author_email="diegobarmor42@gmail.com",
-    url="https://github.com/diegobarmor/prisma-tui",
+    url="https://github.com/diegobarmor/prismatui",
     license="MIT",
     packages=find_packages(),
     install_requires=[],
