@@ -1,6 +1,6 @@
-from ._tui._backend.backend import Backend
-from ._tui._backend.backend_curses import BackendCurses
-from ._tui._backend.constants import *
+from ._backend.backend import Backend
+from ._backend.backend_curses import BackendCurses
+from ._backend.constants import *
 
 # --------------------------------------------------------------------------
 _CURRENT_BACKEND: "Backend | None" = None
@@ -12,17 +12,17 @@ MAX_PALETTE_PAIRS  = 256
 ALPHA_THRESHOLD = 128
 
 # --------------------------------------------------------------------------
-from ._tui._misc.blend_mode import BlendMode
-from ._tui._misc.palette import Palette
-from ._tui._misc.parser_pri import load_layer, save_layer
+from ._misc.blend_mode import BlendMode
+from ._misc.palette import Palette
+from ._misc.parser_pri import load_layer, save_layer
 
 from ._utils.debug_logger import DebugLogger
 from ._utils.mosaic_parser import mosaic_parser
 
-from ._tui._components.pixel import Pixel
-from ._tui._components.layer import Layer
-from ._tui._components.section import Section
-from ._tui._components.terminal import Terminal
+from ._components.pixel import Pixel
+from ._components.layer import Layer
+from ._components.section import Section
+from ._components.terminal import Terminal
 
 # --------------------------------------------------------------------------
 def set_backend(backend: str|Backend) -> None:

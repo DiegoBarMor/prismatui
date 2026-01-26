@@ -1,13 +1,14 @@
 # Changelog
 
-## [0.3.0]
+## [0.3.0] - 2026-01-26
 - Renamed package again from `prisma-tui` to `prismatui` for simplicity.
+- Removed nested `_tui` directory.
 - Added more constants for the ASCII characters (32-126).
 
 ## [0.2.1] - 2025-11-30
 - Attempted to reduce input lag by exhausting repeated keys in `BackendCurses._get_key`.
 - Palettes can now be loaded directly from a dictionary instead of a JSON file.
-- Package no longer nested inside a `src/` folder.
+- Package no longer nested inside a `src/` directory.
 
 ## [0.2.0] - 2025-10-07
 - Renamed the package from `prisma` into `prisma-tui` to avoid name conflicts with other packages using the word "prisma".
