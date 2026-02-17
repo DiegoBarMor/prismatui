@@ -97,9 +97,12 @@ class Terminal:
         y: int | str, x: int | str, string,
         attr: int = None, blend = pr.BlendMode.OVERLAY,
         cut: dict[str, str] = {}
-    ) -> None:
-        """Draw a string on the top layer of the root section, at the specified coordinates with optional attributes and blending mode."""
-        self.root.draw_text(y, x, string, attr, blend, cut)
+    ) -> int:
+        """
+        Draw a string on the top layer of the root section, at the specified coordinates with optional attributes and blending mode.
+        Returns the length of the given raw string (including newlines).
+        """
+        return self.root.draw_text(y, x, string, attr, blend, cut)
 
     # --------------------------------------------------------------------------
     def draw_border(self,

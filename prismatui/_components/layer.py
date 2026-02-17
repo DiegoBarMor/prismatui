@@ -92,22 +92,27 @@ class Layer:
         attr: int = None,
         blend = pr.BlendMode.OVERLAY,
         cut: dict[str, str] = {} # Cut dictionary to specify which edges to cut (e.g., {'T': 1, 'B': 2})
-    ) -> None:
-        """Draw a string at the specified coordinates with optional attributes and blending mode."""
+    ) -> int:
+        """
+        Draw a string at the specified coordinates with optional attributes and blending mode.
+        Returns the length of the given raw string (including newlines).
+        """
         if attr is None: attr = pr.BLANK_ATTR
 
-        rows = str(string).split('\n')
+        string = str(string)
+        rows = string.split('\n')
         h = min(len(rows), self.h)
         w = min(max(map(len, rows)), self.w)
 
         y, x = self._parse_coords(h, w, y, x)
-        if (x >= self.w) or (y >= self.h): return
+        if (x >= self.w) or (y >= self.h): return 0
 
         chars = [row.ljust(w, pr.BLANK_CHAR)[:w] for row in rows[:h]]
         chars = self._parse_cut(y, x, cut, chars)
         attrs = [[attr for _ in row] for row in chars]
         data = self.get_pixel_mat(chars, attrs)
         self._stamp(y, x, data, blend)
+        return len(string)
 
     # --------------------------------------------------------------------------
     def draw_border(self,
