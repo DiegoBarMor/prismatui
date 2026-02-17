@@ -88,8 +88,8 @@ class Layer:
     def draw_text(self,
         y: int | str,  # Can be an integer or a string indicating position (e.g., 'T', 'C', 'B')
         x: int | str,  # Can be an integer or a string indicating position (e.g., 'L', 'C', 'R')
-        string, # Accepts any object that can be converted to a string
-        attr: int = None,
+        string,        # Accepts any object that can be converted to a string
+        attr: int | list[list[int]] = None, # Accepts an homogeneous attribute for the whole string, or a custom attributes matrix
         blend = pr.BlendMode.OVERLAY,
         cut: dict[str, str] = {} # Cut dictionary to specify which edges to cut (e.g., {'T': 1, 'B': 2})
     ) -> int:
@@ -109,7 +109,10 @@ class Layer:
 
         chars = [row.ljust(w, pr.BLANK_CHAR)[:w] for row in rows[:h]]
         chars = self._parse_cut(y, x, cut, chars)
-        attrs = [[attr for _ in row] for row in chars]
+
+        attrs = [[attr for _ in row] for row in chars] \
+            if isinstance(attr, int) else attr
+
         data = self.get_pixel_mat(chars, attrs)
         self._stamp(y, x, data, blend)
         return len(string)

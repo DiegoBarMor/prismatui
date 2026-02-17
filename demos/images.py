@@ -64,13 +64,13 @@ class TUI(pr.Terminal):
         self.bg1.draw_layer(0, 0, self.layer_noise_1.copy())
         self.img.draw_layer('c', 'c', self.layer_cat.copy())
 
-        self.txt.draw_text('b','l', "Press F1 to exit", pr.get_color_pair(1))
+        self.txt.draw_text('b','l', "Press q to exit", pr.get_color_pair(1))
         self.txt.draw_text('t','r', f"{self.h} {self.w}", pr.A_REVERSE)
 
 
     # --------------------------------------------------------------------------
     def should_stop(self):
-        return self.key == pr.KEY_F1
+        return self.key in (pr.KEY_Q_LOWER, pr.KEY_Q_UPPER)
 
 
 ################################################################################

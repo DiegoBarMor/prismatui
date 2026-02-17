@@ -95,7 +95,8 @@ class Terminal:
     # --------------------------------------------------------------------------
     def draw_text(self,
         y: int | str, x: int | str, string,
-        attr: int = None, blend = pr.BlendMode.OVERLAY,
+        attr: int | list[list[int]] = None,
+        blend = pr.BlendMode.OVERLAY,
         cut: dict[str, str] = {}
     ) -> int:
         """

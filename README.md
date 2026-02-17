@@ -28,22 +28,14 @@ class MyTUI(pr.Terminal):
     def on_update(self):
         self.draw_text('c', 'c', "Hello, pr!", pr.A_BOLD)
         self.draw_text("c+1", 'c', f"Key pressed: {self.key}", pr.A_BOLD)
-        self.draw_text('b', 'l', "Press F1 to exit", pr.get_color_pair(1))
+        self.draw_text('b', 'l', "Press q to exit", pr.get_color_pair(1))
 
     def should_stop(self):
-        return self.key == pr.KEY_F1
+        return self.key in (pr.KEY_Q_LOWER, pr.KEY_Q_UPPER)
 
 if __name__ == "__main__":
     MyTUI().run()
 ```
-
-
-<!-- ----------------------------------------------------------------------- -->
-## Core Concepts
-- **Terminal:** Main application class; manages input, rendering, and lifecycle.
-- **Section:** Container for layers and child sections, enabling complex layouts.
-- **Layer:** 2D grid of [`prisma.Pixel`](prisma/pixel.py) objects. Layers can be combined by overwritting, blending or merging their attributes.
-- **Palette:** Handles palette loading for easy setup of colors.
 
 
 <!-- ----------------------------------------------------------------------- -->
