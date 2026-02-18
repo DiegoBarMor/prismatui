@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.1] - 2026-02-18
+- `draw_text` methods now return the length of the string provided to them (before any processing, including `\n` characters).
+- `draw_text` methods can now receive an attribute matrix directly.
+- Fixed bug where PrismaTUI would crash if a `draw_matrix` method received an empty list.
+
 ## [0.3.0] - 2026-01-26
 - Renamed package again from `prisma-tui` to `prismatui` for simplicity.
 - Removed nested `_tui` directory.
