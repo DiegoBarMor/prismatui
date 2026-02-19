@@ -95,7 +95,7 @@ class Layer:
     ) -> int:
         """
         Draw a string at the specified coordinates with optional attributes and blending mode.
-        Returns the length of the given raw string (including newlines).
+        Returns the length of the given raw string (including newlines), or 0 if the string isn't drawn.
         """
         if attr is None: attr = pr.BLANK_ATTR
 
@@ -170,17 +170,19 @@ class Layer:
                 case  _ : raise ValueError(f"Invalid y value: '{y}'")
             modifier = y[1:]
             if modifier: yval += int(modifier)
-        else: yval = y
+        else:
+            yval = y if (y >= 0) else ((y+1) + self.h - h)
 
         if isinstance(x, str):
             match x[0].upper():
                 case 'L': xval = 0
                 case 'C': xval = (self.w - w) // 2
                 case 'R': xval = self.w - w
-                case  _ : raise ValueError(f"Invalid x value: '{y}'")
+                case  _ : raise ValueError(f"Invalid x value: '{x}'")
             modifier = x[1:]
             if modifier: xval += int(modifier)
-        else: xval = x
+        else:
+            xval = x if (x >= 0) else ((x+1) + self.w - w)
 
         return yval, xval
 
@@ -217,16 +219,17 @@ class Layer:
         h = len(data)
         w = len(data[0])
 
-        y0 = y; x0 = x
+        y0 = max(0, y)
+        x0 = max(0, x)
         y1 = min(y + h, self.h)
         x1 = min(x + w, self.w)
 
         mat_orig = self._data[y0:y1]
-        mat_modf = data[:y1-y]
+        mat_modf = data[:y1-y0]
 
         self._data[y0:y1] = [
             row_orig[:x0] + [
-                func(o,m) for o,m in zip(row_orig[x0:x1], row_modf[:x1-x])
+                func(o,m) for o,m in zip(row_orig[x0:x1], row_modf[:x1-x0])
             ] + row_orig[x1:]
             for row_orig, row_modf in zip(mat_orig, mat_modf)
         ]

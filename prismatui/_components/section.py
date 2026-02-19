@@ -199,5 +199,8 @@ class Section:
         if y_outbounds > 0: self.y -= y_outbounds
         if x_outbounds > 0: self.x -= x_outbounds
 
+        for layer in self._layers:
+            layer.set_size(self.h, self.w)
+
 
 # //////////////////////////////////////////////////////////////////////////////

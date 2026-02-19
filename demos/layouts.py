@@ -48,7 +48,7 @@ class TUI(pr.Terminal):
 
         self.bpanel.draw_text('t','l', "Resize the screen with the arrow keys", pr.get_color_pair(1), pr.BlendMode.OVERWRITE)
         self.bpanel.draw_text('t+1','l', "Press q to exit", pr.get_color_pair(1), pr.BlendMode.OVERWRITE)
-        self.bpanel.draw_text('t+1','r', f"{self.h} {self.w}", pr.A_REVERSE, pr.BlendMode.OVERWRITE)
+        self.bpanel.draw_text(-2,'r', f"{self.h} {self.w}", pr.A_REVERSE, pr.BlendMode.OVERWRITE)
 
     # --------------------------------------------------------------------------
     def should_stop(self):
