@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="prismatui",
-    version="0.3.1",
+    version="0.3.2",
     description="A TUI framework based on the idea of \"multi-layered transparency\" composition.",
     keywords="tui terminal user interface transparency layers layered curses",
     long_description=open("README.md").read(),

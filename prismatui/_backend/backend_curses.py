@@ -3,6 +3,7 @@ import prismatui as pr
 # //////////////////////////////////////////////////////////////////////////////
 class BackendCurses(pr.Backend):
     def __init__(self):
+        super().__init__()
         self.curses = __import__("curses")
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -32,12 +33,16 @@ class BackendCurses(pr.Backend):
 
     # --------------------------------------------------------------------------
     def init_color(self, i: int, r: int, g: int, b: int) -> None:
-        try: self.curses.init_color(i, r, g, b)
+        try:
+            self.curses.init_color(i, r, g, b)
+            self._registered_colors[i] = (r,g,b)
         except self.curses.error: pass
 
     # --------------------------------------------------------------------------
     def init_pair(self, i: int, fg: int, bg: int) -> None:
-        try: self.curses.init_pair(i, fg, bg)
+        try:
+            self.curses.init_pair(i, fg, bg)
+            self._registered_cpairs[i] = (fg, bg)
         except self.curses.error: pass
 
     # --------------------------------------------------------------------------
@@ -47,15 +52,34 @@ class BackendCurses(pr.Backend):
 
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    def resize(self, h: int, w: int) -> None:
+        try: self.stdscr.resize(h, w)
+        except self.curses.error: pass
+
+    # --------------------------------------------------------------------------
+    def strong_reset(self) -> None:
+        self._end()
+        self._start()
+
+
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     def _start(self) -> None:
         self.stdscr = self.curses.initscr()
         self.curses.noecho()
         self.curses.cbreak()
         self.stdscr.keypad(1)
-        self.curses.curs_set(False)
+        self.curses.curs_set(0)
 
         try: self.curses.start_color()
         except: pass
+
+        for i,(r,g,b) in self._registered_colors.items():
+            self.init_color(i, r, g, b)
+
+        for i,(fg,bg) in self._registered_cpairs.items():
+            self.init_pair(i, fg, bg)
+
+        self.set_nodelay(self._nodelay_mode)
 
     # --------------------------------------------------------------------------
     def _end(self) -> None:
@@ -65,8 +89,7 @@ class BackendCurses(pr.Backend):
         self.curses.nocbreak()
         self.curses.endwin()
 
-
-    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # --------------------------------------------------------------------------
     def _refresh(self) -> None:
         return # unnecessary for curses, as stdscr.refresh() gets implicitly called by stdscr.getkey()
 
@@ -83,11 +106,6 @@ class BackendCurses(pr.Backend):
             this_char = next_char
             next_char = self.stdscr.getch()
         return this_char
-
-    # --------------------------------------------------------------------------
-    def _resize(self, h: int, w: int) -> None:
-        try: self.stdscr.resize(h, w)
-        except self.curses.error: pass
 
 
 # //////////////////////////////////////////////////////////////////////////////

@@ -165,10 +165,11 @@ class Terminal:
         h,w = pr._CURRENT_BACKEND.get_size(update = True)
 
         if (self.h == h) and (self.w == w): return
+        pr._CURRENT_BACKEND.resize(h, w)
+        pr._CURRENT_BACKEND.strong_reset()
 
         self.h = h; self.w = w
         self.root.update_size()
-        pr._CURRENT_BACKEND._resize(self.h, self.w)
         self.on_resize()
 
     # --------------------------------------------------------------------------

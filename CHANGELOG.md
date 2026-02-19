@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.2] - 2026-02-19
+- Fixed bug where negative y/x positions were not dealt with correctly by the draw methods.
+- Removed visual artifacts remaining after a terminal resize.
+
 ## [0.3.1] - 2026-02-18
 - `draw_text` methods now return the length of the string provided to them (before any processing, including `\n` characters).
 - `draw_text` methods can now receive an attribute matrix directly.

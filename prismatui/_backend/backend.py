@@ -9,6 +9,8 @@ class Backend(ABC):
 
     def __init__(self):
         self._nodelay_mode: bool = False
+        self._registered_colors: dict[int, tuple[int, int, int]] = {}
+        self._registered_cpairs: dict[int, tuple[int, int]] = {}
 
     @abstractmethod
     def set_nodelay(self, boolean: bool) -> None:
@@ -52,6 +54,16 @@ class Backend(ABC):
         raise NotImplementedError
 
     @abstractmethod
+    def resize(self, h: int, w: int) -> None:
+        """Resize the terminal to the given height and width."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def strong_reset(self) -> None:
+        """Resets the backend by ending/cleaning it up and then initializing it again."""
+        raise NotImplementedError
+
+    @abstractmethod
     def _start(self) -> None:
         """Initialize the backend, setting up the terminal."""
         raise NotImplementedError
@@ -69,11 +81,6 @@ class Backend(ABC):
     @abstractmethod
     def _get_key(self) -> int:
         """Get a key press from the terminal."""
-        raise NotImplementedError
-
-    @abstractmethod
-    def _resize(self, h: int, w: int) -> None:
-        """Resize the terminal to the given height and width."""
         raise NotImplementedError
 
 
