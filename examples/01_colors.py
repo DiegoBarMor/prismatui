@@ -1,4 +1,4 @@
-import curses
+from pathlib import Path
 
 import os, sys; sys.path.insert(0, os.getcwd()) # allow imports from root folder
 import prismatui as pr
@@ -70,7 +70,8 @@ class TUI(pr.Terminal):
 
     # --------------------------------------------------------------------------
     def _toggle_palette(self):
-        pr.Palette.load_pal("demos/data/cat.pal").apply()
+        path_pal = Path(__file__).parent / "data/cat.pal"
+        pr.Palette.load_pal(path_pal).apply()
 
 
 ################################################################################

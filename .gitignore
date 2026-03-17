@@ -6,6 +6,3 @@ temp/
 build/
 dist/
 *egg-info/
-debug.sh
-build.sh
-upload.sh
