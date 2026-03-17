@@ -7,6 +7,7 @@ _CURRENT_BACKEND: "Backend | None" = None
 BLANK_CHAR = ' '
 BLANK_ATTR = A_NORMAL
 
+COLOR_PAIR_OFFSET = 1 # don't initialize the first n pairs. usually only need to skip the first pair (reserved for default colors)
 MAX_PALETTE_COLORS = 256
 MAX_PALETTE_PAIRS  = 256
 ALPHA_THRESHOLD = 128

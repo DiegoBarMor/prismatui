@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.4.0]
+
 ## [0.3.2] - 2026-02-19
 - Fixed bug where negative y/x positions were not dealt with correctly by the draw methods.
 - Removed visual artifacts remaining after a terminal resize.

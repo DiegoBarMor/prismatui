@@ -70,7 +70,9 @@ class BackendCurses(pr.Backend):
         self.stdscr.keypad(1)
         self.curses.curs_set(0)
 
-        try: self.curses.start_color()
+        try:
+            self.curses.start_color()
+            self.curses.use_default_colors()
         except: pass
 
         for i,(r,g,b) in self._registered_colors.items():

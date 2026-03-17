@@ -1,6 +1,7 @@
 import random
+from pathlib import Path
 
-from _mods.allow_root_imports import *
+import os, sys; sys.path.insert(0, os.getcwd()) # allow imports from root folder
 import prismatui as pr
 
 # --------------------------------------------------------------------------
@@ -43,8 +44,11 @@ def get_noise_matrices(shape):
 # //////////////////////////////////////////////////////////////////////////////
 class TUI(pr.Terminal):
     def on_start(self):
-        self.palette.load_pal("demos/data/cat.pal")
-        pr.init_pair(1, pr.COLOR_BLACK, pr.COLOR_CYAN)
+        path_pal = Path(__file__).parent / "data/cat.pal"
+        path_pri = path_pal.with_suffix(".pri")
+
+        pr.Palette.load_pal(path_pal).apply()
+        pr.init_pair(255, pr.COLOR_BLACK, pr.COLOR_CYAN)
 
         self.bg0 = self.root.create_layer()
         self.bg1 = self.root.create_layer()
@@ -56,7 +60,7 @@ class TUI(pr.Terminal):
 
         self.layer_noise_0 = pr.Layer(*shape, chars_noise_0, attrs_noise_0)
         self.layer_noise_1 = pr.Layer(*shape, chars_noise_1, attrs_noise_1)
-        self.layer_cat = pr.load_layer("demos/data/cat.pri")
+        self.layer_cat = pr.load_layer(path_pri)
 
     # --------------------------------------------------------------------------
     def on_update(self):
@@ -64,7 +68,7 @@ class TUI(pr.Terminal):
         self.bg1.draw_layer(0, 0, self.layer_noise_1.copy())
         self.img.draw_layer('c', 'c', self.layer_cat.copy())
 
-        self.txt.draw_text('b','l', "Press q to exit", pr.get_color_pair(1))
+        self.txt.draw_text('b','l', "Press q to exit", pr.get_color_pair(255))
         self.txt.draw_text('t','r', f"{self.h} {self.w}", pr.A_REVERSE)
 
 

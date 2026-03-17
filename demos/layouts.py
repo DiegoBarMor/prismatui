@@ -1,11 +1,10 @@
-from _mods.allow_root_imports import *
+import os, sys; sys.path.insert(0, os.getcwd()) # allow imports from root folder
 import prismatui as pr
 
 # //////////////////////////////////////////////////////////////////////////////
 class TUI(pr.Terminal):
     def on_start(self):
         pr.init_pair(1, pr.COLOR_BLACK, pr.COLOR_CYAN)
-        pr.init_pair(2, pr.COLOR_BLACK, pr.COLOR_YELLOW)
 
         self.names = ["canvas", "tpanel", "bpanel", "lpanel", "rpanel"]
 

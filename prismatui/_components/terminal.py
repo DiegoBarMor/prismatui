@@ -10,7 +10,7 @@ class Terminal:
         self.w: int = 0
         self.key: int = -1
         self.root: pr.Section
-        self.palette: pr.Palette
+        self.pal: pr.Palette
 
         self._no_delay: bool = False
         self._nap_ms: int = 0
@@ -153,7 +153,7 @@ class Terminal:
         It initializes the terminal size, root section, palette
         and sets the backend to no-delay mode or not, according to the provided fps."""
         self.root = pr.Section()
-        self.palette = pr.Palette()
+        self.pal  = pr.Palette()
         pr._CURRENT_BACKEND.set_nodelay(self._no_delay)
 
         self._running = True

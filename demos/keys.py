@@ -1,4 +1,4 @@
-from _mods.allow_root_imports import *
+import os, sys; sys.path.insert(0, os.getcwd()) # allow imports from root folder
 import prismatui as pr
 
 # //////////////////////////////////////////////////////////////////////////////
